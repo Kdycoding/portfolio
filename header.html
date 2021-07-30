@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="KO">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Himedia Pension</title>
+    <style>
+    
+        /* Global */
+:root {
+  --text-color: #000000;
+  --background-color: #White;
+  --accent-color: lightgray;
+
+}
+
+* {
+  margin:0; padding:0;
+  box-sizing: border-box;
+}
+
+body {
+	
+  margin: 0 auto;
+  font-family: 'Pretendard-Regular';
+  
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Nav container */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 18px;
+  background-color: rgba(255,255,255,0.7);
+  position:fixed;
+  left:50%; transform: translateX(-50%);
+  width: 1600px; height: 80px; z-index:105;
+}
+
+.navbar__logo:hover {
+	cursor:pointer;
+}
+
+.navbar__logo i {
+  color: var(--accent-color);
+}
+
+/* Menu */
+.navbar__menu {
+  display: flex;
+  padding-left: 20px;
+  list-style: none;
+  height: 100%; 
+}
+
+.navbar__menu li {
+  padding: 16px 55px;
+}
+
+.navbar__menu li:hover {
+  background-color: rgba(0,0,0,0.6);
+  color:white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <!-- Logo -->
+      <div class="navbar__logo">
+        <img src="img/logo.png" width="190px" height=55px">
+      </div>
+      <!-- Menu -->
+      <ul class="navbar__menu">
+        <li class="home">HOME</li>
+        <li class="menu1">ABOUT</li>
+        <li class="menu2">ROOM</li>
+        <li class="menu3">RESERVE</li>
+        <li class="menu4">TRAFFIC</li>
+      </ul>
+ 
+
+    </div>
+  </body>
+  
+  <script>
+	
+    $(function(){
+        
+        $(".home").click(function(){
+            $(location).attr("href", "index.html")
+        });
+        $(".navbar__logo").click(function(){
+            $(location).attr("href", "index.html")
+        });
+        $(".menu1").click(function(){
+            $(location).attr("href", "introduce.html")
+        });
+        $(".menu2").click(function(){
+            $(location).attr("href", "room.html")
+        });
+        $(".menu3").click(function(){
+            $(location).attr("href", "reservation.html")
+        });
+        $(".menu4").click(function(){
+            $(location).attr("href", "navigation.html")
+        });
+        
+    });    
+        
+</script>
+  
+  
+</html>

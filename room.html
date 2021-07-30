@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>객실 소개</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/jquery.fullPage.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script/jquery.fullPage.js"></script>
+  <script src="script/main.js"></script>
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+    main {width: 1600px; margin: 0 auto;}
+    .main_img {width: 100%; height: 100vh;}
+    .main_img h2{width:50%; position: absolute; left:80%; top:35%; transform: translate(-50%, -50%); z-index: 11; font-size: 120px; font-family: 'Tangerine', sans-serif; color:ivory;
+    text-shadow: 2px 2px 3px #000000;}
+    .main_img1 {background-image: url("image/room_a/a_8.jpg"); width: 100%; height: 100%;}
+    .rooms_wrap {margin:0 auto; width: 96%; position: relative;}
+    .rooms {width: 100%; height: 50vh; position:relative;}
+    .rooms_img {width:100%; height: 98%; overflow: hidden; background-color: pink; position: absolute; z-index: 12;}
+    .rooms_img img {width: 100%; min-width:1600px;}
+    .rooms_text {width: 47%; height: 98%; background-color: rgba(0,0,0,0.8); color:white; display: flex; align-items: center; justify-content: center; z-index:13; position: absolute; min-width: 460px;;}
+    .rooms_text_wrap h1{font-family: 'Gowun Dodum', sans-serif; font-size:40px; }
+    .r_btn { width: 55%; height: 50px; background: none; border:1px solid white; color:white; font-weight: bold; box-sizing: border-box;}
+    .r_btn:hover {background-color: black; cursor: pointer; }
+   .a_text {left:0; } .b_text {right:0;} .c_text {left:0;} .d_text {right:0;}
+   footer{ width: calc(100%-40px); height: 50px; padding:30px 20px; text-align:right; font-size:13px; font-family:"Nanum gothic"; line-height:20px; background-color : #212121; overflow: hidden;}
+   footer .footerIn .gBox { color: white;}
+   
+  </style>
+  
+</head>
+<body>
+   <header></header>
+
+   <main id="fullpage">
+      <section class="section">
+         <div class="main_img">
+            <h2>Preview Rooms</h2>
+            <div class="main_img1"></div>
+         </div>
+      </section>
+     
+      <section class="section">
+         <div class="rooms_wrap">
+            <div class="rooms room_a">
+               <div class="rooms_text a_text">
+                  <div class="rooms_text_wrap a_text_wrap">
+                     <h1>Room A</h1><br>
+                     <span>객실 시설 :</span>
+                     <span>에어컨, 침대, 취사용품, TV, Wifi, 화장실, 테라스</span><br><br>
+                     <span>이용 인원 :</span>
+                     <span>기준 2명 / 최대 6명</span><br><br>
+                     <button class="r_btn a_btn">VIEW MORE</button><br><br>
+                     <button class="r_btn rn_bt">RESERVE NOW</button>
+                  </div>
+               </div>
+               <div class="rooms_img a_img">
+                  <img src="image/room_a/a_72.jpg">
+               </div>
+            </div>
+            
+            <div class="rooms room_b">
+               <div class="rooms_text b_text">
+                  <div class="rooms_text_wrap b_text_wrap">
+                     <h1>Room B</h1><br>
+                     <span>객실 시설 :</span>
+                     <span>에어컨, 침대, 취사용품, TV, Wifi, 화장실, 테라스</span><br><br>
+                     <span>이용 인원 :</span>
+                     <span>기준 2명 / 최대 6명</span><br><br>
+                     <button class="r_btn b_btn">VIEW MORE</button><br><br>
+                     <button class="r_btn rn_bt">RESERVE NOW</button>
+                  </div>
+               </div>
+               <div class="rooms_img b_img">
+                  <img src="image/room_b/b_82.jpg">
+               </div>
+            </div>
+         </div>
+      </section>
+     
+      <section class="section">
+         <div class="rooms_wrap">
+            <div class="rooms room_c">
+               <div class="rooms_text c_text">
+                  <div class="rooms_text_wrap c_text_wrap">
+                     <h1>Room C</h1><br>
+                     <span>객실 시설 :</span>
+                     <span>에어컨, 침대, 취사용품, TV, Wifi, 화장실, 테라스</span><br><br>
+                     <span>이용 인원 :</span>
+                     <span>기준 4명 / 최대 6명</span><br><br>
+                     <button class="r_btn c_btn">VIEW MORE</button><br><br>
+                     <button class="r_btn rn_bt">RESERVE NOW</button>
+                  </div>
+               </div>
+               <div class="rooms_img c_img">
+                  <img src="image/room_c/c_82.jpg">
+               </div>
+            </div>
+            
+            <div class="rooms room_d">
+               <div class="rooms_text d_text">
+                  <div class="rooms_text_wrap d_text_wrap">
+                     <h1>Room D</h1><br>
+                     <span>객실 시설 :</span>
+                     <span>에어컨, 침대, 취사용품, TV, Wifi, 화장실, 테라스</span><br><br>
+                     <span>이용 인원 :</span>
+                     <span>기준 4명 / 최대 6명</span><br><br>
+                     <button class="r_btn d_btn">VIEW MORE</button><br><br>
+                     <button class="r_btn rn_bt">RESERVE NOW</button>
+                  </div>
+               </div>
+               <div class="rooms_img d_img">
+                  <img src="image/room_d/d_52.jpg">
+               </div>
+            </div>
+         </div>
+      </section>
+      <footer class="section fp-auto-height" style="width: 100%; height: 100%;">
+         <div class="footerIn cf">
+            <div class="gBox">
+               상호명 : 하이미디어 펜션/ 대표자 : 홍길동 / 주소 : 서울 서초구 서초동 1318-0 <br>
+               사업자번호 : 000-00-00000/ 계좌번호 : 000-000000-00000 (예금주 :홍길동) / 전화: 010-0000-0000
+            </div>
+         </div>
+      </footer>
+   </main>
+
+   <script type="text/javascript">
+   
+      $.ajax({
+          url:'header.html',
+          async: true,
+          success: function(result){
+              $("header").html(result);
+              $('html').scrollTop(0);
+          },
+          
+      }); 
+      
+   $(function(){
+      
+        $(".rn_bt").click(function(){
+            $(location).attr("href", "reservation.html")
+        });
+        
+        $(".a_btn").click(function(){
+           window.open("slide_a.html");
+        });
+        $(".b_btn").click(function(){
+           window.open("slide_b.html");
+        });
+        $(".c_btn").click(function(){
+           window.open("slide_c.html");
+        });
+        $(".d_btn").click(function(){
+           window.open("slide_d.html");
+        });
+        
+        
+        $(".a_btn").mouseout(function(){
+           $(this).html("VIEW MORE");
+        });
+        $(".a_btn").mouseover(function(){
+           $(this).html("객실 더 보기");
+        });
+        $(".b_btn").mouseout(function(){
+           $(this).html("VIEW MORE");
+        });
+        $(".b_btn").mouseover(function(){
+           $(this).html("객실 더 보기");
+        });
+        $(".c_btn").mouseout(function(){
+           $(this).html("VIEW MORE");
+        });
+        $(".c_btn").mouseover(function(){
+           $(this).html("객실 더 보기");
+        });
+        $(".d_btn").mouseout(function(){
+           $(this).html("VIEW MORE");
+        });
+        $(".d_btn").mouseover(function(){
+           $(this).html("객실 더 보기");
+        });
+        
+        $(".rn_bt").mouseover(function(){
+           $(this).html("실시간 예약");
+        });
+        $(".rn_bt").mouseout(function(){
+           $(this).html("RESERVE NOW");
+        });
+        
+        
+        
+      
+   });
+      
+   
+   
+   </script>
+
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>실시간 예약</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Dodum&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gowun+Dodum&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/jquery.fullPage.css">
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+   <script src="script/jquery.fullPage.js"></script>
+   <script src="script/main.js"></script>
+  
+   <style>
+        *{margin: 0; padding: 0; }
+        main{width: 1600px; margin:0 auto;}
+        .reservation_wrap{width: 100%; height: 100vh; margin: 0 auto; font-family: 'Gowun Dodum';}
+        .reservation_wrap .res_img{width: 45%; height: 100%; background-image: url("image/reservation_res.jpg"); background-repeat: no-repeat; background-size: cover; float: left; position: relative;}
+        .reservation_wrap .res_img h1{width: 320px; height: 200px; color: white; position: absolute; left: 5%; bottom: 5%; font-size: 46px; font-family: 'Do Hyeon'; text-shadow: 2px 2px 3px #000000;}
+        .reservation_wrap .res_banner{width: 55%; height: 100%; float: left;} 
+        .reservation_wrap .res_banner .room_img{width: 50%; height: 50%; float: left; position: relative; overflow: hidden;}
+        .reservation_wrap .res_banner .room_img h1{text-shadow: 2px 2px 3px #000000;}
+        .reservation_wrap .res_banner .room_img .img_zoom{width: 100%; height: 100%; -webkit-transition: all .4s ease; -moz-transition: all .4s ease; -ms-transition: all .4s ease; -o-transition: all .4s ease; transition: all .4s ease; }
+        .reservation_wrap .res_banner .room_img .img_zoom:hover{-webkit-transform: scale(1.3); -moz-transform: scale(1.3); -o-transform: scale(1.3); -ms-transform: scale(1.3); transform: scale(1.3);}
+        .reservation_wrap .res_banner .room_img button{width: 110px; height: 40px; position: absolute; right: 5%; bottom: 10%; color: white; background-color: black; border: none; font-size: 16px; cursor: pointer; transition:800ms ease all; outline:none; border-radius: 4px;}
+        .reservation_wrap .res_banner .room_img button:hover{background-color: white; color: black;}
+        .reservation_wrap .res_banner .room_img button:before,button:after{content:''; position:absolute; top:0; right:0; height:2px; width: 98%; width:0; background-color: black; transition:400ms ease all;}
+        .reservation_wrap .res_banner .room_img button:after{right:inherit; top:inherit; left:0; bottom:0;}
+        .reservation_wrap .res_banner .room_img button:hover:before,button:hover:after{ width:100%; transition:800ms ease all;}
+        .reservation_wrap .res_banner .room_img h1{position: absolute; left: 5%; bottom: 10%; color: white;}
+        .reservation_wrap .res_banner .roomA_img .img_zoom{background-image: url("image/room_a/a_8.jpg"); background-repeat: no-repeat; background-size: cover;}
+        .reservation_wrap .res_banner .roomB_img .img_zoom{background-image: url("image/room_b/b_8.jpg"); background-repeat: no-repeat; background-size: cover;}
+        .reservation_wrap .res_banner .roomC_img .img_zoom{background-image: url("image/room_c/c_8.jpg"); background-repeat: no-repeat; background-size: cover;}
+        .reservation_wrap .res_banner .roomD_img .img_zoom{background-image: url("image/room_d/d_7.jpg"); background-repeat: no-repeat; background-size: cover;}
+        
+        .notice_wrap{width: 100%; height: 100vh; position: relative; padding-top:80px; box-sizing: border-box; }
+      .notice_wrap .notice_title{width: 100%; height: 50px; margin: 0 20px; box-sizing: border-box;}
+        .notice_wrap .notice_title h1{font-size: 18px; float: left; cursor: pointer;}
+        .notice_wrap .notice_title h2{font-size: 18px; float: left; font-weight: lighter; cursor: pointer;}
+        .notice_wrap .notice_title h3{font-size: 18px; float: left; font-weight: lighter; cursor: pointer;}
+        .notice_wrap .notice_title h4{font-size: 18px; float: left; font-weight: lighter; cursor: pointer;}
+        .notice_wrap .notice_title span{width: 1px; height: 25px; background-color: black; display: block; float: left; margin: 0 10px; box-sizing: border-box;}
+        .notice_wrap .notice_info{width: 100%; height: 480px;}
+        .notice_wrap .notice_info ul{width: 100%;}
+        .notice_wrap .notice_info ul li{list-style: inside; margin: 10px 0; margin-left: 15px; color: #5D5D5D; box-sizing: border-box;}
+        .notice_wrap .notice_pay{width: 100%; height: 400px; display: none;}
+        .notice_wrap .notice_pay h1{margin-left: 20px; box-sizing: border-box;} 
+        .notice_wrap .notice_pay .pay_table{width: 1050px; border-collapse: collapse; text-align: center; line-height: 1.5; margin: 15px 20px; margin-top: 30px; box-sizing: border-box;}
+        .notice_wrap .notice_pay .pay_table th{width: 150px; height: 70px; color: white; background: #5D5D5D; font-size: 14px;}
+        .notice_wrap .notice_pay .pay_table td{width: 150px; height: 70px; color: #5D5D5D; background: white; font-size: 14px; border-bottom: 1px solid #ccc;}
+        .notice_wrap .notice_pay .pay_table .td{border-right: 1px solid #ccc;}
+        .notice_wrap .notice_pay ul{width: 100%;}
+        .notice_wrap .notice_pay ul li{list-style: inside; margin: 5px 0; margin-left: 15px; color: #5D5D5D; box-sizing: border-box;}
+        
+        .notice_wrap .notice_refund{width: 100%; height: 400px; display: none;}
+        .notice_wrap .notice_refund ul{width: 100%;}
+        .notice_wrap .notice_refund ul li{list-style: inside; margin: 5px 0; margin-left: 15px; color: #5D5D5D; box-sizing: border-box;}
+        .notice_wrap .notice_refund .refund_table{width: 960px; border-collapse: collapse; text-align: center; line-height: 1.5; margin: 15px 20px; box-sizing: border-box;}
+        .notice_wrap .notice_refund .refund_table th{width: 120px; height: 55px; color: white; background: #5D5D5D; font-size: 14px;}
+        .notice_wrap .notice_refund .refund_table td{width: 120px; height: 55px; color: #5D5D5D; background: white; font-size: 14px; border-bottom: 1px solid #ccc;}
+        .notice_wrap .notice_check{width: 100%; height: 250px; display: none;}
+        .notice_wrap .notice_check ul{width: 100%;}
+        .notice_wrap .notice_check ul li{list-style: inside; margin: 10px 0; margin-left: 15px; color: #5D5D5D; box-sizing: border-box;}
+        footer{ width: calc(100%-40px); height: 50px; padding:30px 20px; text-align:right; font-size:13px; font-family:"Nanum gothic"; line-height:20px; background-color : #212121; overflow: hidden;}
+      footer .footerIn .gBox { color: white;}
+    </style>
+  
+</head>
+<body>
+   <header></header>
+
+   <main id="fullpage">
+   
+      <section class="section">
+         <div class="reservation_wrap">
+            <div class="res_img">
+               <h1>HIMEDIA<br>PENSION<br>실시간 예약하기</h1>
+            </div>
+              <div class="res_banner">
+               <div class="room_img roomA_img">
+                  <div class="img_zoom"></div>
+                  <h1>Room A</h1>
+                  <button class="b1 rbtn">예약하기</button>
+               </div>
+               <div class="room_img roomB_img">
+                  <div class="img_zoom"></div>
+                  <h1>Room B</h1>
+                  <button class="b2 rbtn">예약하기</button>
+               </div>
+               <div class="room_img roomC_img">
+                  <div class="img_zoom "></div>
+                  <h1>Room C</h1>
+                  <button class="b3 rbtn">예약하기</button>
+               </div>
+               <div class="room_img roomD_img">
+                  <div class="img_zoom"></div>
+                  <h1>Room D</h1>
+                  <button class="b4 rbtn">예약하기</button>
+               </div>
+            </div>
+         </div>
+      </section>
+       
+      <section class="section">
+                <div class="notice_wrap">
+          <div class="notice_title">
+             <h1>안내사항</h1>
+             <span></span>
+             <h2>요금안내</h2>
+             <span></span>
+             <h4>환불안내</h4>
+             <span></span>
+             <h3>입/퇴실 안내</h3>
+          </div>
+          <div class="notice_info">
+             <h1>&nbsp&nbsp안내사항</h1><br>
+             <ul>
+                <li>성수기 기간 안내 : 요금안내를 참조하세요.</li>
+                <li>인터넷(실시간 예약)예약을 우선으로 하고 있습니다.</li>
+                <li>예약 후 이용 금액 전액을 입금 하셔야 예약완료가 됩니다.</li>
+                <li>인터넷 예약 후 8시간 이내에 이용금액 미입금시 자동 취소 됩니다.</li>
+                <li>기준 인원 1명 추가 시 1인당 성인 30,000원 / 유아 20,000원 추가 요금을 받습니다. (24개월이하 1인 무료 / 1인 침구류셋트 포함가)</li>
+                <li>바베큐 세트구성: 고기(목살.삼겹살 600그램)2~3인용 수제소세지. 모둠쌈야채. 버섯. 구이용해물. 라면2개. 생수2개. 햇반2개. 각종소스류</li>
+                <li>미성년자는 이용하실 수 없습니다.</li>
+                <li>다른 고객분들을 위하여 애완동물은 동반 입실 하실 수 없습니다.</li>
+                <li>전 객실 내에서 금연입니다.</li>
+                <li>늦은 시간에 고성 방가는 삼가해 주시기 바랍니다.</li>
+                <li>시설물 파손 및 분실에 대한 책임은 고객에게 있으므로 유의 하시기 바랍니다.</li>
+                <li>이용객의 부주의로 일어나는 사고에 대해서는 책임을 지지 않습니다.</li>
+                <li>쓰레기 배출은 음식물, 소각용, 재활용으로 구분하여 지정된 곳에 버려 주시기 바랍니다.</li>
+                <li>객실 내에서는 냄새가 심한요리(생선튀김, 청국장, 육류구이 등)는 금하오며 바베큐장을 이용하시기 바랍니다.</li>
+             </ul>
+          </div>
+          <div class="notice_pay">
+              <h1>&nbsp요금표</h1>
+              <table class="pay_table">
+             <thead>
+             <tr>
+                <th scope="col">객실명<br>(기준~최대)</th>
+                <th scope="col">비수기</th>
+                <th scope="col">준성수기</th>
+                <th scope="col">성수기</th>
+                <th scope="col">비수기 기간</th>
+                <th scope="col">준성수기 기간</th>
+                <th scope="col">성수기 기간</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Room A<br>(2인~6인)</td>
+                <td>200,000</td>
+                <td>250,000</td>
+                <td>300,000</td>
+                <td rowspan="4" class="td">성수기와 준성수기를<br>제외한 기간</td>
+                <td rowspan="4" class="td">07-01 ~ 08-31</td>
+                <td rowspan="4">07-28 ~ 08-21</td>
+            </tr>
+            <tr>
+                <td>Room B<br>(2인~6인)</td>
+                <td>200,000</td>
+                <td>250,000</td>
+                <td>300,000</td>
+            </tr>
+            <tr>
+                <td>Room C<br>(4인~8인)</td>
+                <td>300,000</td>
+                <td>350,000</td>
+                <td>400,000</td>
+            </tr>
+            <tr>
+                <td>Room D<br>(4인~8인)</td>
+                <td>250,000</td>
+                <td>300,000</td>
+                <td>350,000</td>
+            </tr>
+         </tbody>
+         </table>
+      </div>
+      <div class="notice_refund">
+         <h1>&nbsp&nbsp환불안내</h1><br>
+             <ul>
+                <li>예약 객실과 날짜는 서로 피해가 없도록 예약 전 신중히 생각하시고 결정해 주시기 바랍니다.</li>
+                <li>취소수수료는 예약 시점과는 무관한 이용일 기준입니다..</li>
+                <li>환불 시 결제하신 금액에서 취소수수료를 제외한 금액을 환불해 드립니다.</li>
+                <li>취소수수료는 결제금액이 아닌 예약금(객실요금+기타옵션요금) 기준으로 책정됩니다.</li>
+                <li>취소수수료가 100% 인 경우 전액 환불되지 않습니다.</li>
+                <li>예약취소 수수료 내역은 아래와 같습니다.</li>
+             </ul>
+             <table class="refund_table">
+            <thead>
+            <tr>
+                   <th scope="col">날짜<br>(이용일 기준)</th>
+                   <th scope="col">기본</th>
+                   <th scope="col">5일전</th>
+                   <th scope="col">4일전</th>
+                   <th scope="col">3일전</th>
+                   <th scope="col">2일전</th>
+                   <th scope="col">1일전</th>
+                   <th scope="col">당일</th>
+            </tr>
+               </thead>
+               <tbody>
+               <tr>
+                   <td>취소 수수료</td>
+                   <td>10%</td>
+                   <td>15%</td>
+                   <td>20%</td>
+                   <td>30%</td>
+                   <td>50%</td>
+                   <td>70%</td>
+                   <td>100%</td>
+               </tr>
+               </tbody>
+             </table>
+          </div>
+          <div class="notice_check">
+             <h1>&nbsp&nbsp입/퇴실 안내</h1><br>
+             <ul>
+                <li>입실 : 당일 오후 2시</li>
+                <li>퇴실 : 이용 마지막 날 오전 10시</li>
+                <li>오전 10시에서 오후 2시전까지는 다음 이용고객님들을 위한 객실 청소시간입니다.</li>
+                <li>입, 퇴실 시간은 다음 예약 손님을 위하여 반드시 준수해 주세요.</li>
+                <li>오후 10시 이후 펜션에 도착하게 되는 경우에는 사전에 연락을 주시기 바랍니다.</li>
+                <li>쓰레기는 지정된 장소에 분리해서 배출해 주세요.</li>
+             </ul>
+          </div>
+       </div>
+      </section>
+      <footer class="section fp-auto-height" style="width: 100%; height: 100%;">
+         <div class="footerIn cf">
+            <div class="gBox">
+               상호명 : 하이미디어 펜션/ 대표자 : 홍길동 / 주소 : 서울 서초구 서초동 1318-0 <br>
+               사업자번호 : 000-00-00000/ 계좌번호 : 000-000000-00000 (예금주 :홍길동) / 전화: 010-0000-0000
+            </div>
+         </div><!-- .footerIn -->
+      </footer>
+   </main>
+<script>
+    $(function(){
+       $.ajax({
+           url:'header.html',
+           async: true,
+           success: function(result){
+               $("header").html(result);
+               $('html').scrollTop(0);
+           },
+           
+       }); 
+       
+        $(".b1").click(function(){
+            $(location).attr("href", "calendar_a.jsp")
+        });
+        $(".b2").click(function(){
+            $(location).attr("href", "calendar_b.jsp")
+        });
+        $(".b3").click(function(){
+            $(location).attr("href", "calendar_c.jsp")
+        });
+        $(".b4").click(function(){
+            $(location).attr("href", "calendar_d.jsp")
+        });
+        $(".notice_title h1").click(function(){
+            $(".notice_title h1").css("font-weight", "bold");
+            $(".notice_title h2").css("font-weight", "lighter");
+            $(".notice_title h3").css("font-weight", "lighter");
+            $(".notice_title h4").css("font-weight", "lighter");
+            $(".notice_refund").css("display", "none");
+            $(".notice_info").css("display", "block");
+            $(".notice_pay").css("display", "none");
+            $(".notice_check").css("display", "none");
+        });
+        $(".notice_title h2").click(function(){
+            $(".notice_title h1").css("font-weight", "lighter");
+            $(".notice_title h2").css("font-weight", "bold");
+            $(".notice_title h3").css("font-weight", "lighter");
+            $(".notice_title h4").css("font-weight", "lighter");
+            $(".notice_refund").css("display", "none");
+            $(".notice_info").css("display", "none");
+            $(".notice_pay").css("display", "block");
+            $(".notice_check").css("display", "none");
+        });
+        $(".notice_title h3").click(function(){
+            $(".notice_title h1").css("font-weight", "lighter");
+            $(".notice_title h2").css("font-weight", "lighter");
+            $(".notice_title h3").css("font-weight", "bold");
+            $(".notice_title h4").css("font-weight", "lighter");
+            $(".notice_refund").css("display", "none");
+            $(".notice_info").css("display", "none");
+            $(".notice_pay").css("display", "none");
+            $(".notice_check").css("display", "block");
+         });
+        $(".notice_title h4").click(function(){
+            $(".notice_title h1").css("font-weight", "lighter");
+            $(".notice_title h2").css("font-weight", "lighter");
+            $(".notice_title h3").css("font-weight", "lighter");
+            $(".notice_title h4").css("font-weight", "bold");
+            
+            $(".notice_info").css("display", "none");
+            $(".notice_pay").css("display", "none");
+            $(".notice_check").css("display", "none");
+            $(".notice_refund").css("display", "block");
+         });
+    })
+
+    
+</script>
+</body>
+</html>
